@@ -49,8 +49,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     //Bottom Navigation
-    implementation 'com.android.support:design:28.0.0'
-
+    //implementation 'com.android.support:design:28.0.0'
     implementation 'net.danlew:android.joda:2.10.7.1'
     //GpxParser
     implementation 'io.ticofab.androidgpxparser:parser:1.6.0'
