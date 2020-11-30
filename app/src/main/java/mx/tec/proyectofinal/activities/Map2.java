@@ -42,6 +42,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CustomCap;
 import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.RoundCap;
@@ -72,6 +73,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -109,9 +111,10 @@ public class Map2 extends AppCompatActivity implements OnMapReadyCallback {
     GPXParser mParser = new GPXParser();
     Polyline polyline1;
 
-    String[] rutas = {"Ruta1","Ruta2","Ruta3","Ruta4","Ruta5","Ruta5 Ahuatepec","Ruta5 Oriente","Ruta5 Texcal", "Ruta7", "Ruta7 Villa", "Ruta9", "Ruta Morelos", "Interescolar"};
+    String[] rutas = {"Ruta1","Ruta2","Ruta3","Ruta4","Ruta5","Ruta5 Ahuatepec","Ruta5 Oriente","Ruta5 Texcal","Ruta6", "Ruta7",
+            "Ruta7 Villa","Ruta8", "Ruta9", "Ruta12","Ruta13","Ruta14","Ruta15","Ruta19","Ruta20", "Ruta Morelos", "Interescolar"};
     private List<Integer> colorList = new ArrayList<Integer>();
-
+    Iterator it;
     LocationCallback locationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -208,6 +211,7 @@ public class Map2 extends AppCompatActivity implements OnMapReadyCallback {
 
                     }else{
                         polyline1.remove();
+                        gMap.clear();
                     }
                     //Toast.makeText(getApplicationContext(), parentView.getItemAtPosition(pos).toString() , Toast.LENGTH_LONG).show();
                     Gpx parsedGpx = null;
@@ -245,6 +249,8 @@ public class Map2 extends AppCompatActivity implements OnMapReadyCallback {
                     } else {
                         Log.e("TAG", "Error parsing gpx track!");
                     }
+                    gMap.addMarker(new MarkerOptions().position(points.get(0)).title("Inicio").icon(BitmapDescriptorFactory.fromResource(R.drawable.inicio)));
+                    gMap.addMarker(new MarkerOptions().position(points.get(points.size() - 1)).title("Fin").icon(BitmapDescriptorFactory.fromResource(R.drawable.inicio)));
                     PolylineOptions polyline_options = new PolylineOptions().addAll(points);
                     polyline1 = googleMap.addPolyline(polyline_options);
                     points.clear();
